@@ -1,4 +1,4 @@
-package kh.edu.rupp.ite.onlineshop;
+package kh.edu.rupp.ite.onlineshop.ui.Activity;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;

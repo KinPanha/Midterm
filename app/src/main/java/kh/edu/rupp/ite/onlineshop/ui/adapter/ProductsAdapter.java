@@ -14,6 +14,7 @@ import com.squareup.picasso.Picasso;
 import java.io.IOException;
 
 import kh.edu.rupp.ite.onlineshop.api.model.Products;
+import kh.edu.rupp.ite.onlineshop.databinding.ViewHolderHomeBinding;
 import kh.edu.rupp.ite.onlineshop.databinding.ViewHolderProductBinding;
 
 public class ProductsAdapter extends ListAdapter<Products, ProductsAdapter.ProductViewHolder> {
@@ -60,7 +61,7 @@ public class ProductsAdapter extends ListAdapter<Products, ProductsAdapter.Produ
 
         @SuppressLint("SetTextI18n")
         public void bind(Products products) throws IOException {
-            Picasso.get().load(products.getImage_url()).into(itembinding.image);
+              Picasso.get().load(products.getImage_url()).into(itembinding.image);
               itembinding.nameproduct.setText(products.getName());
               itembinding.price.setText("$" + products.getPrice());
         }

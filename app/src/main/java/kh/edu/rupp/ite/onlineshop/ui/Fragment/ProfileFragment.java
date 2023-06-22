@@ -39,7 +39,7 @@ public class ProfileFragment extends Fragment {
 
     private void loadProfileFromService(){
         Retrofit http = new Retrofit.Builder()
-                .baseUrl("https://ferupp.s3.ap-southeast-1.amazonaws.com/Midterm/Profile/")
+                .baseUrl("https://raw.githubusercontent.com/kimsongsao/ferupp/main/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         ApiService apiService  = http.create(ApiService.class);
@@ -62,7 +62,6 @@ public class ProfileFragment extends Fragment {
 
     }
     private void showProfile(Profile profile){
-
         binding.name.setText(profile.getFirst_name()+profile.getLast_name());
         binding.email.setText(profile.getEmail());
         Picasso.get().load(profile.getImage_url()).into(binding.image);
@@ -71,6 +70,5 @@ public class ProfileFragment extends Fragment {
         binding.address.setText(profile.getAddress());
         binding.date.setText(profile.getBirthday());
         binding.gender.setText(profile.getGender());
-
     }
 }
