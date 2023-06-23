@@ -39,7 +39,7 @@ public class ProfileFragment extends Fragment {
 
     private void loadProfileFromService(){
         Retrofit http = new Retrofit.Builder()
-                .baseUrl("https://ferupp.s3.ap-southeast-1.amazonaws.com/Midterm/Profile/")
+                .baseUrl("https://raw.githubusercontent.com/kimsongsao/ferupp/main/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         ApiService apiService  = http.create(ApiService.class);
