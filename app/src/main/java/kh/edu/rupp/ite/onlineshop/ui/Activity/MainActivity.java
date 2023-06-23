@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.location.GnssAntennaInfo;
 import android.os.Bundle;
 
 import kh.edu.rupp.ite.onlineshop.R;
@@ -18,26 +19,11 @@ import kh.edu.rupp.ite.onlineshop.databinding.ActivityMainBinding;
 public class MainActivity extends AppCompatActivity {
     private ActivityMainBinding binding;
 
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-       binding = ActivityMainBinding.inflate(getLayoutInflater());
-       setContentView(binding.getRoot());
-       binding.bottomNavigation.setOnItemSelectedListener(item -> {
-           if (item.getItemId() == R.id.mhome){
-             showFragment(new HomeFragment());
-           }
-           else if (item.getItemId() == R.id.mproduct){
-               showFragment(new ProductFragment());
-           }
-           else if (item.getItemId() == R.id.mprofile){
-               showFragment(new ProfileFragment());
-           }
-           else if (item.getItemId() == R.id.mmore){
-               showFragment(new MoreFragment());
-           }
-           return true;
-       });
+        callFragment();
 
     }
     private void showFragment(Fragment fragment){
@@ -53,5 +39,25 @@ public class MainActivity extends AppCompatActivity {
 
         // Commit transaction
         fragmentTransaction.commit();
+    }
+    public void callFragment(){
+        binding = ActivityMainBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
+        binding.bottomNavigation.setOnItemSelectedListener(item -> {
+            if (item.getItemId() == R.id.mhome){
+                showFragment(new HomeFragment());
+            }
+            else if (item.getItemId() == R.id.mproduct){
+                showFragment(new ProductFragment());
+            }
+            else if (item.getItemId() == R.id.mprofile){
+                showFragment(new ProfileFragment());
+            }
+            else if (item.getItemId() == R.id.mmore){
+                showFragment(new MoreFragment());
+            }
+            return true;
+        });
+
     }
 }

@@ -1,8 +1,6 @@
 package kh.edu.rupp.ite.onlineshop.ui.Fragment;
 
-
-import android.content.Context;
-import android.content.Intent;
+import android.app.Activity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -13,29 +11,29 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
-
 
 import java.util.List;
 
-import kh.edu.rupp.ite.onlineshop.R;
 import kh.edu.rupp.ite.onlineshop.api.model.Products;
 import kh.edu.rupp.ite.onlineshop.api.service.ApiService;
-import kh.edu.rupp.ite.onlineshop.databinding.FragmentProductBinding;
-import kh.edu.rupp.ite.onlineshop.ui.adapter.ProductsAdapter;
+import kh.edu.rupp.ite.onlineshop.databinding.FragmentDescriptionBinding;
+import kh.edu.rupp.ite.onlineshop.databinding.FragmentHomeBinding;
+import kh.edu.rupp.ite.onlineshop.ui.adapter.DescriptionAdapter;
+import kh.edu.rupp.ite.onlineshop.ui.adapter.HomeAdapter;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
-import android.widget.*;
 
-public class ProductFragment extends Fragment {
-    private FragmentProductBinding binding;
+public class DescriptionFragment extends Fragment {
+    private FragmentDescriptionBinding binding;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        binding = FragmentProductBinding.inflate(inflater,container, false);
+         binding = FragmentDescriptionBinding.inflate(inflater,container, false);
          return binding.getRoot();
     }
     @Override
@@ -43,7 +41,6 @@ public class ProductFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         loadProductListFromService();
     }
-
     private void loadProductListFromService(){
         //create Retrofit
         Retrofit httpClient = new Retrofit.Builder()
@@ -59,8 +56,7 @@ public class ProductFragment extends Fragment {
             @Override
             public void onResponse(Call<List<Products>> call, Response<List<Products>> response) {
                 if (response.isSuccessful()){
-                    showProductList(response.body());
-                    Toast.makeText(getContext(), "hello", Toast.LENGTH_SHORT).show();
+                    showDescription(response.body());
                 }else {
                     Toast.makeText(getContext(), "Error", Toast.LENGTH_SHORT).show();
                 }
@@ -74,12 +70,8 @@ public class ProductFragment extends Fragment {
             }
         });
     }
-    private void showProductList(List<Products> products){
-        LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
-        binding.recyclerview.setLayoutManager(layoutManager);
-
-        ProductsAdapter adapter = new ProductsAdapter();
-        adapter.submitList(products);
-        binding.recyclerview.setAdapter(adapter);
+    private void showDescription(List<Products> products){
+        DescriptionAdapter descriptionAdapter = new DescriptionAdapter();
+        descriptionAdapter.submitList(products);
     }
 }

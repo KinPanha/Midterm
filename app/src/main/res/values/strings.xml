@@ -6,14 +6,16 @@
     <string name="profile">My Profile</string>
     <string name="More">More</string>
     <string name="search">Search Product</string>
-    
-    
+
+
     <string name="productname">Product Name</string>
     <string name="email">Email</string>
     <string name="phoneNumber">Phone Number</string>
     <string name="gender">Gender</string>
     <string name="birthday">Birthday</string>
     <string name="address">Address</string>
+    <string name="rating">Rating</string>
+    <string name="des">Description</string>
 
     <string name="addorder">Add Order</string>
     <string name="orderNow">Order Now</string>
